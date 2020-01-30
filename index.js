@@ -9,7 +9,7 @@ var unfinishedTasks = document.getElementById("unfinished-tasks");
 var completedTasks = document.getElementById("completed-tasks");
 var tasksContainer = document.getElementById("tasksContainer");
 
-function createNewElement(task, taskCtgr, finished) {
+function createNewElement(task, taskCtgr, finished, taskDeadline) {
   var listItem = document.createElement("li");
   var checkbox = document.createElement("button");
 
@@ -33,7 +33,7 @@ function createNewElement(task, taskCtgr, finished) {
   ctgr.innerText = taskCtgr;
 
   var dl = document.createElement("label");
-  dl.innerText = deadline.value;
+  dl.innerText = taskDeadline;
 
   var editButton = document.createElement("button");
   editButton.className = "material-icons edit";
@@ -97,7 +97,47 @@ showButton.onclick = showByCtgr;
 
 //дописать
 function showByDeadline() {
-  var newDeadline = deadline.value;
+  var now = new Date();
+
+  var day = document.getElementById("selectdl").value;
+  var dayLeft;
+  if (day == "tomorrow") dayLeft = 1;
+  if (day == "week") dayLeft = 7;
+
+  if (day != "all tasks") {
+    for (var i = 0; i < data.unfinishedTasks.length; i++) {
+      var ul = document.getElementById("unfinished-tasks");
+      var items = ul.getElementsByTagName("li");
+
+      if (data.unfinishedTasks[i].taskDeadline - now == 1) {
+        items[i].style.visibility = "hidden";
+      } else {
+        items[i].style.visibility = "visible";
+      }
+    }
+    for (var i = 0; i < data.completedTasks.length; i++) {
+      var ul = document.getElementById("completed-tasks");
+      var items = ul.getElementsByTagName("li");
+      if (data.completedTasks[i].taskDeadline != day) {
+        items[i].style.visibility = "hidden";
+      } else {
+        items[i].style.visibility = "visible";
+      }
+    }
+  } else {
+    //хотим посмотреть все дела
+    for (var i = 0; i < data.unfinishedTasks.length; i++) {
+      var ul = document.getElementById("unfinished-tasks");
+      var items = ul.getElementsByTagName("li");
+      items[i].style.visibility = "visible";
+    }
+
+    for (var i = 0; i < data.completedTasks.length; i++) {
+      var ul = document.getElementById("completed-tasks");
+      var items = ul.getElementsByTagName("li");
+      items[i].style.visibility = "visible";
+    }
+  }
 }
 dlButton.onclick = showByDeadline;
 
@@ -151,7 +191,12 @@ function addTask() {
   var taskCtgr = selectCtgr.options[selectCtgr.selectedIndex].text;
 
   if (inputTask.value) {
-    var listItem = createNewElement(inputTask.value, taskCtgr);
+    var listItem = createNewElement(
+      inputTask.value,
+      taskCtgr,
+      false,
+      deadline.value
+    );
     unfinishedTasks.appendChild(listItem);
     bindTaskEvents(listItem, finishTask);
     inputTask.value = "";
@@ -234,6 +279,9 @@ function save() {
     elem.ctgr = unfinishedTasks.children[i].getElementsByTagName(
       "label"
     )[1].innerText;
+    elem.taskDeadline = unfinishedTasks.children[i].getElementsByTagName(
+      "label"
+    )[2].innerText;
     unfinishedTasksArr.push(elem);
   }
 
@@ -246,6 +294,9 @@ function save() {
     elem.ctgr = completedTasks.children[i].getElementsByTagName(
       "label"
     )[1].innerText;
+    elem.taskDeadline = completedTasks.children[i].getElementsByTagName(
+      "label"
+    )[2].innerText;
     completedTasksArr.push(elem);
   }
 
@@ -268,7 +319,9 @@ var data = load();
 for (var i = 0; i < data.unfinishedTasks.length; i++) {
   var listItem = createNewElement(
     data.unfinishedTasks[i].name,
-    data.unfinishedTasks[i].ctgr
+    data.unfinishedTasks[i].ctgr,
+    false,
+    data.unfinishedTasks[i].taskDeadline
   );
   unfinishedTasks.appendChild(listItem);
   bindTaskEvents(listItem, finishTask);
@@ -277,7 +330,9 @@ for (var i = 0; i < data.unfinishedTasks.length; i++) {
 for (var i = 0; i < data.completedTasks.length; i++) {
   var listItem = createNewElement(
     data.completedTasks[i].name,
-    data.completedTasks[i].ctgr
+    data.completedTasks[i].ctgr,
+    true,
+    data.completedTasks[i].taskDeadline
   );
   completedTasks.appendChild(listItem);
   bindTaskEvents(listItem, unfinishTask);
