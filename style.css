@@ -1,0 +1,92 @@
+.ulContainer {
+  text-align: left;
+}
+
+.filter,
+.search,
+.filterDl {
+  text-align: center;
+  padding-left: 40px;
+}
+
+.filsearch {
+  display: flex;
+  flex-direction: row;
+}
+
+.addTask {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  margin-top: 0;
+}
+
+input,
+select,
+.deadline {
+  background-color: #ffffff83;
+  color: #4b0082;
+  font-weight: bold;
+}
+
+ul {
+  background-color: #ffffff83;
+  margin: 0 auto;
+  padding: 0;
+  color: #800080;
+  font-weight: bold;
+  width: 700px;
+  border: 1px solid #4b0082;
+}
+
+li {
+  margin-left: 30px;
+  list-style-type: decimal;
+  list-style-position: inside;
+}
+
+body {
+  background-image: url("img/space.jpg");
+  background-repeat: repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.container {
+  padding: 25px;
+  background-image: linear-gradient(
+    to right,
+    #18506e 0%,
+    #25dbdea4 50%,
+    #960f79 100%
+  );
+  width: 900px;
+  margin: 2% auto;
+  border: 1px solid #18506e;
+  border-radius: 10px;
+}
+
+.textstyle {
+  color: #fbf5ff;
+  font-size: 25px;
+  font-family: "Poppins", sans-serif;
+  font-family: "Playfair Display", serif;
+  text-align: center;
+}
+
+#add,
+#show,
+#dline,
+#search,
+#reset {
+  color: #4b0082;
+  font-size: 15px;
+  font-family: "Poppins", sans-serif;
+  font-family: "Playfair Display", serif;
+  text-align: center;
+  background-color: #ffffff83;
+  font-weight: bold;
+  margin-left: 10px;
+}

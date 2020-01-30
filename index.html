@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>To-do list</title>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+	<link rel="stylesheet" type="text/css" href="css/main_responsive.css">
+    <link rel="stylesheet" href="style.css" />
+	<link href="https://fonts.googleapis.com/css?family=Playfair+Display|Poppins&display=swap" rel="stylesheet">
+</head>
+<body>
+	<div id="root">
+		<div class="container">
+			
+		<div class="addTask">
+			<h1 class="textstyle"><strong>Add a task</strong><br />
+			<input id="new-task" onclick="" type="text">
+			<input class="deadline" type="date">
+			<select id="selectCtgr">	  
+				<option value="another">&#8194;another&#8194;</option>
+				<option value="household chores">&#8194;household chores&#8194;</option>
+				<option value="shopping">&#8194;shopping&#8194;</option>
+				<option value="education">&#8194;education&#8194;</option>
+			</select>
+			<button id="add">ADD</button>
+		</div>
+
+		<div class="filsearch">
+			<div class="filterDl">
+				<h1 class="textstyle">Filter by deadline</h1>
+				<select id="selectdl">
+					<option value="tomorrow">&#8194;tomorrow</option>
+					<option value="week">&#8194;week</option>
+				</select>
+				<button id="dline">SHOW</button>
+			</div>
+
+			<div class="filter">
+				<h1 class="textstyle">Filter by category</h1>
+				<select id="selectCtgr2">
+					<option value="all tasks">all tasks</option>
+					<option value="another">&#8194;another&#8194;</option>
+					<option value="household chores">&#8194;household chores&#8194;</option>
+					<option value="shopping">&#8194;shopping&#8194;</option>
+					<option value="education">&#8194;education&#8194;</option>
+				</select>
+				<button id="show">SHOW</button>
+			</div>
+
+			<div class="search">
+				<h1 class="textstyle">Search by name</h1>
+				<input id="search-task" type="text">
+				<button id="search">SEARCH</button>
+				<button id="reset">RESET</button>
+			</div>
+		</div>
+
+			<h1 class="textstyle">Unfinished tasks</h1>
+			<div class="ulContainer">	
+				<ul id="unfinished-tasks">
+				</ul>
+			</div>
+
+			<div class="tasksContainer">
+				<h1 class="textstyle">Completed tasks</h1>
+				<div class="ulContainer">
+					<ul id="completed-tasks">
+					</ul>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+	<script src="index.js"></script>
+</body>
+</html>
